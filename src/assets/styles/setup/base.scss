@@ -1,0 +1,31 @@
+// #app {
+//    max-width: 1280px; 
+//   margin: 0 auto;
+//   font-weight: normal; 
+//   width: 100%;
+// }
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: $main-font;
+  background-color: $main-bg-color;
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  padding: 0;
+  margin: 0;
+  font-weight: 300;
+}
+
+a {
+  text-decoration: none;
+  font-size: .9em;
+}

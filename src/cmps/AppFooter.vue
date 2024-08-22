@@ -7,30 +7,26 @@
 <script>
 export default {
   
-  data() {
-    return {
-      
-    }
-  },
-  methods: {
-  },
-  computed: {
-  },
-  mounted() {
-}
 }
 </script>
 
 <style lang='scss'>
   .app-footer{
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    padding: 20px;
-    background-color: #36d6c1;
-    color: black;
-    text-align: center;
-    box-shadow: -1px -12px 10px 1px rgba(0, 255, 52, 0.4);
+    position: static;
+      bottom: 0;
+      right: 0;
+      left: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+
+    padding:0 20px;
+    height: 7vh;
+
+    background-color: #303031;
+    color: whitesmoke;
+    box-shadow: -1px -6px 10px 1px #dbdbdb77;
+    text-shadow: 0 0 20px #fff, 0 0 20px #fff;
   }
 </style>

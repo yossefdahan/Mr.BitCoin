@@ -1,0 +1,11 @@
+// height
+$header-height: 10vh;
+$footer-height: 10vh;
+$main-height: calc(100vh - $header-height - $footer-height);
+
+// fonts
+$main-font: "Montserrat", sans-serif;
+
+
+// background colors
+$main-bg-color: #2b2a2ab0;
