@@ -1,9 +1,10 @@
 <template>
  <section class="contacts-list">
     <TransitionGroup name="list" tag="ul">
-        <li v-for="contact in contacts" :key="contact._id">
+        <li v-for="contact in contacts" :key="contact._id" @click="onNavigate(contact._id)">
             <ContactPreview :contact="contact" />
-            <button class="remove-btn" @click="onRemoveContact(contact._id)">X</button>
+            <button class="remove-btn" @click.stop="onRemoveContact(contact._id)">X</button>
+            <!-- <RouterLink class="details-btn" :to="`/contact/${contact._id}`">Details</RouterLink> -->
         </li>
 
     </TransitionGroup>
@@ -30,7 +31,10 @@ export default {
   methods: {
     onRemoveContact(contactId){
         this.$emit('remove', contactId)
-    }
+    },
+    onNavigate(contactId) {
+      this.$router.push(`/contact/${contactId}`);
+    },
   },
   computed: {
   },
@@ -59,7 +63,8 @@ padding: 10px;
 justify-content: space-between;
 text-align: center;
 color: whitesmoke;
-
+border-radius: 18px;
+cursor: pointer;
 
 & .remove-btn{
 background-color: inherit;
@@ -72,12 +77,14 @@ color: whitesmoke;
 transition:background-color 100ms ease-in-out;
 transition: transform 300ms ease-in-out;
 cursor: pointer;
+z-index: 10;
 &:hover{
     background-color: orangered;
     transform: scale(1.3) rotate(360deg);
     
  
 }
+
 }
     }
     }
