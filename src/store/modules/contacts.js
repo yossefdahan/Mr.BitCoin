@@ -1,8 +1,10 @@
 import { contactService } from "@/services/contactService.js"
 
+
 export const contact = {
     state: {
         contacts: null,
+        filterBy: null
     },
     mutations: {
         setContacts(state, { contacts }) {
@@ -14,14 +16,16 @@ export const contact = {
             contacts.splice(idx, 1)
         },
 
-
+        setFilter(state, { filterBy }) {
+            state.filterBy = filterBy
+        },
     },
 
 
     actions: {
-        async loadContacts({ commit }) {
+        async loadContacts({ commit, state }) {
             try {
-                const contacts = await contactService.query()
+                const contacts = await contactService.query(state.filterBy)
                 commit({ type: 'setContacts', contacts })
             } catch (err) {
                 console.log(err)
@@ -38,12 +42,27 @@ export const contact = {
             }
 
         },
+
+        loadFilter({ commit }) {
+            const filterBy = contactService.getDefaultFilter()
+
+            commit({ type: 'setFilter', filterBy })
+        },
+
+        async setFilterBy({ commit, dispatch }, filterBy) {
+            commit({ type: 'setFilter', filterBy });
+            await dispatch('loadContacts');  // Reload contacts based on the new filter
+        },
     },
 
 
     getters: {
         contacts(state) {
             return state.contacts
+        },
+
+        filterBy(state) {
+            return state.filterBy
         }
     }
 }

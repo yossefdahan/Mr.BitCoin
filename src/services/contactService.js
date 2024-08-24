@@ -8,7 +8,7 @@ export const contactService = {
     remove,
     save,
     getEmptyContact,
-    filter,
+    getDefaultFilter
 };
 
 async function query(filterBy = null) {
@@ -18,13 +18,17 @@ async function query(filterBy = null) {
         await dbService.insert(KEY, contacts);
     }
     if (filterBy) {
-        contacts = filter(contacts, filterBy);
+        contacts = _filter(contacts, filterBy);
     }
     return sort(contacts);
 }
 
 async function get(id) {
     return await dbService.get(KEY, id);
+}
+
+function getDefaultFilter() {
+    return { name: '', email: '', phone: '' }
 }
 
 async function remove(id) {
@@ -44,12 +48,15 @@ function getEmptyContact() {
     };
 }
 
-function filter(contacts, term) {
-    term = term.toLocaleLowerCase();
+function _filter(contacts, filterBy) {
+    const { name, email, phone } = filterBy;
+
     return contacts.filter(contact => {
-        return contact.name.toLocaleLowerCase().includes(term) ||
-            contact.phone.toLocaleLowerCase().includes(term) ||
-            contact.email.toLocaleLowerCase().includes(term);
+        return (
+            (!name || contact.name.toLowerCase().includes(name.toLowerCase())) &&
+            (!email || contact.email.toLowerCase().includes(email.toLowerCase())) &&
+            (!phone || contact.phone.toLowerCase().includes(phone.toLowerCase()))
+        );
     });
 }
 

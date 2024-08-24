@@ -2,8 +2,8 @@
 <section class="main-container">
  <header>
   <AppHeader/>
+  <UserMsg />
  </header>
-
  <main>
   <RouterView/>
  </main>
@@ -18,12 +18,14 @@
 
 import AppFooter from './cmps/AppFooter.vue';
 import AppHeader from './cmps/AppHeader.vue';
+import UserMsg from './cmps/UserMsg.vue';
 export default {
 
 
   components: {
     AppHeader,
     AppFooter,
+    UserMsg,
   }
   
 }
@@ -38,7 +40,9 @@ export default {
   flex-direction: column;
   min-height: 100vh;
   position: relative;
-
+& header{
+  position: relative;
+}
   & main{
  display: flex;
  align-items: center;

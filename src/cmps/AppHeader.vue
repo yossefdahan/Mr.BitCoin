@@ -1,6 +1,11 @@
 <template>
     <section class="app-header">
-  <h1>Mr.BitCoin</h1>
+ 
+        <h1>Mr.BitCoin</h1>
+      
+ <div class="contact-filter-container">
+  <ContactFilter/>
+ </div>
   <nav>
     <RouterLink to="/">Home</RouterLink>
     <RouterLink to="/about">About</RouterLink>
@@ -11,8 +16,11 @@
 </template>
 
 <script>
+import ContactFilter from '@/cmps/ContactFilter.vue';
 export default {
-  
+  components:{
+    ContactFilter,
+  }
  
 }
 </script>
@@ -36,6 +44,13 @@ export default {
     box-shadow: -1px 6px 10px 1px #dbdbdb77;
    color: #0a0a0a;
   
+& .contact-filter-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1em;
+}
+
 & nav{
     display: flex;
     gap: 1em;
@@ -51,6 +66,7 @@ export default {
     }
 }
 & h1{
+  position: static;
     font-size: 1.5em;
     font-weight: bold;
     margin: 0;

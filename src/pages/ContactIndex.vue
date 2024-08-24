@@ -4,6 +4,7 @@
 
 <script>
 import ContactsList from '@/cmps/ContactsList.vue';
+import { showErrorMsg, showSuccessMsg } from '@/services/eventBus.service';
 
 
 export default {
@@ -13,12 +14,11 @@ export default {
  
 methods: {
  async removeContact(contactId){
-  
        try {
         await this.$store.dispatch({ type: 'removeContact', contactId })
-    
+    showSuccessMsg(`Contact ${contactId} removed successfully`)
        } catch (error) {
-        
+        showErrorMsg('Failed to remove contact')
        } 
     }
 },
