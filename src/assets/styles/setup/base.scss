@@ -7,12 +7,18 @@
 
 * {
   box-sizing: border-box;
+  scrollbar-width: thin;
+
+
+
 }
 
 body {
   font-family: $main-font;
-  background-color: $main-bg-color;
+  background: linear-gradient(87deg, $main-bg-color, $secondary-bg-color);
   margin: 0;
+  overflow-y: scroll;
+
 }
 
 h1,

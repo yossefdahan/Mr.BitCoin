@@ -5,7 +5,12 @@
   <UserMsg />
  </header>
  <main>
-  <RouterView/>
+   <RouterView v-slot="{ Component }" >
+
+     <transition name="slide" mode="out-in">
+       <component :is="Component" :key="$route.path"></component>
+    </transition>
+  </RouterView>
  </main>
 
  <footer>
@@ -44,13 +49,24 @@ export default {
   position: relative;
 }
   & main{
- display: flex;
- align-items: center;
- justify-content: center;
- flex-grow: 1;
- margin-top: 11vh;
- margin-bottom: 4vh;
+    display: flex;
+    flex-grow: 1;
+    margin-top: 8vh;
+    margin-bottom: 4vh;
+    flex-direction: column;
+    align-items: center;
   }
 
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: all 0.5s ease-out;
+}
+
+.slide-enter-from,
+.slide-leave-to {
+  opacity: 0;
+  transform: translateX(-530px);
 }
 </style>

@@ -1,5 +1,6 @@
 import { createStore } from "vuex";
-import { contact, } from "./modules/contacts.js"
+import { contact } from "./modules/contacts.js"
+import { user } from "./modules/user.js"
 const options = {
     strict: true,
 
@@ -24,7 +25,7 @@ const options = {
 
     modules: {
         contact,
-
+        user,
     }
 
 

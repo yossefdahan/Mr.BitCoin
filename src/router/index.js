@@ -2,9 +2,18 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 
 import HomePage from '../pages/HomePage.vue'
 import ContactDetails from '@/pages/ContactDetails.vue'
+import ContactEdit from '@/pages/ContactEdit.vue'
+import LoginPage from '@/pages/LoginPage.vue'
+import store from '@/store'
+
 const routerOptions = {
   history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
+    {
+      path: '/login',
+      name: 'login',
+      component: LoginPage
+    },
     {
       path: '/',
       name: 'home',
@@ -14,6 +23,11 @@ const routerOptions = {
       path: '/contact/:id',
       name: 'ContactDetails',
       component: ContactDetails
+    },
+    {
+      path: '/contact/edit/:_id?',
+      name: 'ContactEdit',
+      component: ContactEdit
     },
     {
       path: '/about',
@@ -48,5 +62,14 @@ const routerOptions = {
   ]
 }
 const router = createRouter(routerOptions)
+
+router.beforeEach((to, from, next) => {
+  const user = store.getters.user;
+  if (!user && to.name !== 'login') {
+    next({ name: 'login' });
+  } else {
+    next();
+  }
+})
 
 export default router
